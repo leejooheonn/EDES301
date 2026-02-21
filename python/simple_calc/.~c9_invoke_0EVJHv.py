@@ -55,12 +55,6 @@ Error conditions:
 # NOTE - Add import statements to allow access to Python library functions
 # NOTE - Hint:  Look at  https://docs.python.org/3/library/operator.html
 import operator 
-import sys 
-
-
-# Fixes inputs in Python 2
-if sys.version_info[0] < 3:
-    input = raw_input 
 
 # ------------------------------------------------------------------------
 # Constants
@@ -105,13 +99,9 @@ def get_user_input():
         op2 = float(input("Second value: "))
         function = input("Function (+, -, *, /, >>, <<, %, **): ")
         
-        if function == "<<" or function == ">>":
-            op1 = int(op1)
-            op2 = int(op2)
-        
         func = operators.get(function, None)
         
-        return (op1, op2, func)
+        return (op1, op2, function)
         
         
         # NOTE - User input is generally returned as a string and must be translated.
