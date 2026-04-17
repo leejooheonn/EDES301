@@ -1,0 +1,7 @@
+{
+    "fsr_adc_pin": "P1_21",
+    "reading_empty": 0.2372161271981895,
+    "reading_full": 0.8279365181922913,
+    "hourly_goal_percent": 50.0,
+    "reading_coaster": 0.004615384805947542
+}
