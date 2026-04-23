@@ -38,40 +38,32 @@ def main():
     my_display.write_text("ADC initialized", 5, 30)
     time.sleep(3)
     my_display.clear_screen()
+    
 
-
-    # record the "Empty" baseline (0%)
-    my_display.write_text("weigh empty bottle", 2, 30)
+    # record the "Empty" baseline (0%
+    my_display.write_text("weigh empty", 2, 30)
     print("\n--- STEP 1: Weigh The Empty Bottle ---")
     input("Place your EMPTY bottle on the coaster. Press ENTER when ready...")
     reading_empty = get_stable_reading(fsr_pin)
     my_display.clear_screen()
     my_display.write_text("empty bottle remembered", 2, 30)
-
     print(f"Empty baseline recorded: {reading_empty:.4f}")
-    
     time.sleep(3)
     my_display.clear_screen()
 
-    # record the "Full" baseline (100%)
-    my_display.write_text("weigh full bottle", 2, 30)
-
+    my_display.write_text("weigh full", 2, 30)
     print("\n--- STEP 2: Weigh The Full Bottle ---")
     input("Fill your bottle up and place it on the coaster. Press ENTER when ready...")
     reading_full = get_stable_reading(fsr_pin)
     my_display.clear_screen()
     my_display.write_text("full bottle remembered", 2, 30)
-
-    print(f"Full baseline recorded: {reading_full:.4f}")
+    print(f"Full baseline recorded: {reading_full:.4f}")    
     time.sleep(3)
-    my_display.clear_screen()
-
-    
+    my_display.clear_screen()    
 
     # check that the readings make sense
     if reading_empty >= reading_full:
         print("\nWARNING: Your empty reading is higher than or equal to your full reading!")
-        print("This may mean the FSR isn't being pressed down hard enough, or the wiring is loose.")
         print("Run calibration again.")
         my_display.write_text("calibration error", 2, 30)
         time.sleep(3)
@@ -79,31 +71,30 @@ def main():
         my_display.write_text("try again", 2, 30)
         time.sleep(3)
         my_display.clear_screen()
-
         return
     
     
     
-    # record the no water bottle baseline 
-    print("\n--- STEP 3: Weigh the Coaster  ---")
-    my_display.write_text("weigh coaster", 2, 30)
-    input("Take your bottle off the coaster. Press ENTER when ready...")
-    reading_coaster = get_stable_reading(fsr_pin)
-    my_display.clear_screen()
-    my_display.write_text("coaster weight remembered", 2, 30)
+    # # record the no water bottle baseline 
+    # print("\n--- STEP 3: Weigh the Coaster  ---")
+    # my_display.write_text("weigh coaster", 2, 30)
+    # input("Take your bottle off the coaster. Press ENTER when ready...")
+    # reading_coaster = get_stable_reading(fsr_pin)
+    # my_display.clear_screen()
+    # my_display.write_text("coaster weight remembered", 2, 30)
     
-    time.sleep(3)
-    my_display.clear_screen()
-    print(f"Coaster baseline recorded: {reading_coaster:.4f}")
+    # time.sleep(3)
+    # my_display.clear_screen()
+    # print(f"Coaster baseline recorded: {reading_coaster:.4f}")
 
 
-    my_display.write_text("set hourly goal", 2, 30)
+    my_display.write_text("set timer", 2, 30)
     # set the goal
-    print("\n--- STEP 4: Goal Setting ---")
+    print("\n--- STEP 3: Goal Setting ---")
     while True:
         try:
-            goal_input = input("What percentage of the bottle do you want to drink every hour? (e.g., 20): ")
-            hourly_goal = float(goal_input)
+            time_goal = input("Input timer (mins): ")
+            time_goal = float(time_goal)
             break
         except (ValueError, TypeError):
             my_display.clear_screen()
@@ -117,8 +108,8 @@ def main():
         "fsr_adc_pin": fsr_pin,
         "reading_empty": reading_empty,
         "reading_full": reading_full,
-        "hourly_goal_percent": hourly_goal, 
-        "reading_coaster": reading_coaster
+        "time_goal": time_goal, 
+        # "reading_coaster": reading_coaster
     }
     
     my_display.clear_screen()
