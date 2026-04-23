@@ -1,6 +1,6 @@
 {
     "fsr_adc_pin": "P1_21",
-    "reading_empty": 0.4605128228664398,
-    "reading_full": 0.9675457894802093,
-    "time_goal": 1.0
+    "reading_empty": 0.006813186872750521,
+    "reading_full": 0.9464957296848298,
+    "time_goal": 2.0
 }

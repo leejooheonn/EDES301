@@ -56,7 +56,6 @@ class PetDisplay:
         self.i2c = board.I2C()
         self.oled = adafruit_ssd1306.SSD1306_I2C(OLED_WIDTH, OLED_HEIGHT, self.i2c, addr=0x3C)
 
-        # Fill with 0 and push to the screen 
     def clear_screen(self):
         self.oled.fill(0)
         self.oled.show()
@@ -64,18 +63,15 @@ class PetDisplay:
     def continuous_running(self):
         #for _ in range(5):
         for frame in running_frames:
-            if keyboard.is_pressed('e'):
-                break
             self.oled.image(frame)
             self.oled.show()
-            time.sleep(0.25)        
-   
-    
+            time.sleep(0.17)        
+
     def show_awake_pet(self):
         draw.text((10,32), "you woke up your pet!", font=font, fill=255)
         self.oled.image(image)
         self.oled.show()
-        time.sleep(2)
+        time.sleep(4)
         self.clear_screen()
         
         draw.text((10,32), "pet's name: ", font=font, fill=255)
@@ -84,9 +80,9 @@ class PetDisplay:
         self.pet_name = input("pet's name: ")
         self.clear_screen()
 
-        self.write_text(f"{self.pet_name} likes to run", 10, 30)
-        self.write_text(f"keep {self.pet_name} hydrated!", 10, 40)
-        time.sleep(3)
+        self.write_text(f"{self.pet_name} likes to run", 0, 30)
+        self.write_text(f"keep {self.pet_name} hydrated!", 0, 40)
+        time.sleep(5)
         self.clear_screen()
 
         for _ in range(3):
@@ -101,7 +97,7 @@ class PetDisplay:
                 time.sleep(0.25)
         
         font = ImageFont.load_default()
-        draw.text((35, 35), "Goal met! Meow!", font=font, fill=255)
+        draw.text((35, 35), f"{self.pet_name} happy! :)", font=font, fill=255)
         self.oled.image(image)
         self.oled.show()
         
@@ -115,7 +111,7 @@ class PetDisplay:
         draw = ImageDraw.Draw(image)
         font = ImageFont.load_default()
 
-        draw.text((35, 35), "Goal not met :( ", font=font, fill=255)
+        draw.text((35, 35), f"{self.pet_name} sad :( ", font=font, fill=255)
         self.oled.image(image)
         self.oled.show()  
         time.sleep(5)

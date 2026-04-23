@@ -53,8 +53,8 @@ class WaterTracker:
     
     def is_empty(self, raw_val):
         """ Ret #urns true if the bottle is empty, false otherwise """
-        # somewhat arbritrary buffer of 0.01 
-        if raw_val < self.reading_empty + 0.01:
+        # somewhat arbritrary buffer of 0.1 
+        if raw_val < self.reading_empty + 0.1:
             return True
             
         return False    

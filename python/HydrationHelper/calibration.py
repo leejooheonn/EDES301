@@ -2,6 +2,7 @@ import time
 import json
 import Adafruit_BBIO.ADC as ADC
 import display 
+import sys
 
 def get_stable_reading(pin, samples=10, delay=0.1):
     """Takes multiple readings and averages them to smooth out FSR noise."""
@@ -17,7 +18,7 @@ def get_stable_reading(pin, samples=10, delay=0.1):
 def main():
     my_display = display.PetDisplay()
     
-    my_display.write_text("HydraGotchi", 48, 32) 
+    my_display.write_text("HydraGotchi", 20, 32) 
     time.sleep(3)
     
     my_display.clear_screen()
@@ -27,17 +28,22 @@ def main():
     fsr_pin = input("Which ADC pin is your FSR connected to? (e.g., P2_35 or P1_19): ").strip()
     
     try:
-        ADC.setup()
+        setup_successful = ADC.setup()
+        test_val = ADC.read(fsr_pin)
+        
+        if setup_successful is False or test_val is None:
+            raise Exception("ADC responded with invalid data")
+        my_display.clear_screen()
+        
+        my_display.write_text("ADC initialized", 5, 30)
+        time.sleep(3)
+        my_display.clear_screen()
+    
     except Exception as e:
         print(f"\nERROR: Could not initialize ADC")
         my_display.clear_screen()
         my_display.write_text("ADC not set up", 5, 30)
-        return
-    
-    my_display.clear_screen()
-    my_display.write_text("ADC initialized", 5, 30)
-    time.sleep(3)
-    my_display.clear_screen()
+        sys.exit(1)
     
 
     # record the "Empty" baseline (0%
@@ -46,7 +52,7 @@ def main():
     input("Place your EMPTY bottle on the coaster. Press ENTER when ready...")
     reading_empty = get_stable_reading(fsr_pin)
     my_display.clear_screen()
-    my_display.write_text("empty bottle remembered", 2, 30)
+    my_display.write_text("empty remembered", 2, 30)
     print(f"Empty baseline recorded: {reading_empty:.4f}")
     time.sleep(3)
     my_display.clear_screen()
@@ -56,7 +62,7 @@ def main():
     input("Fill your bottle up and place it on the coaster. Press ENTER when ready...")
     reading_full = get_stable_reading(fsr_pin)
     my_display.clear_screen()
-    my_display.write_text("full bottle remembered", 2, 30)
+    my_display.write_text("full remembered", 2, 30)
     print(f"Full baseline recorded: {reading_full:.4f}")    
     time.sleep(3)
     my_display.clear_screen()    
@@ -66,26 +72,12 @@ def main():
         print("\nWARNING: Your empty reading is higher than or equal to your full reading!")
         print("Run calibration again.")
         my_display.write_text("calibration error", 2, 30)
-        time.sleep(3)
-        my_display.clear_screen()
-        my_display.write_text("try again", 2, 30)
-        time.sleep(3)
+        my_display.write_text("try again", 2, 45)
+
+        time.sleep(4)
         my_display.clear_screen()
         return
     
-    
-    
-    # # record the no water bottle baseline 
-    # print("\n--- STEP 3: Weigh the Coaster  ---")
-    # my_display.write_text("weigh coaster", 2, 30)
-    # input("Take your bottle off the coaster. Press ENTER when ready...")
-    # reading_coaster = get_stable_reading(fsr_pin)
-    # my_display.clear_screen()
-    # my_display.write_text("coaster weight remembered", 2, 30)
-    
-    # time.sleep(3)
-    # my_display.clear_screen()
-    # print(f"Coaster baseline recorded: {reading_coaster:.4f}")
 
 
     my_display.write_text("set timer", 2, 30)
@@ -123,7 +115,7 @@ def main():
 
     print("\n Calibration Complete! ")
     print("Your PocketBeagle remembers your bottle's weight. You can now run main.py!")
-    my_display.write_text("you can now run main.py!", 2, 30)
+    my_display.write_text("run main.py!", 2, 30)
     time.sleep(3)
     my_display.clear_screen()
 
