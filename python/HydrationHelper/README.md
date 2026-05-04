@@ -14,3 +14,6 @@ HydrationHelper is a tool to help people reach their daily water goals. It works
 
 ## Built With
 * Python, BeagleBoard
+
+# Author
+* Jooheon Lee EDES301
