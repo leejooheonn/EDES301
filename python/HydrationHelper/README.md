@@ -20,8 +20,9 @@ To run this project locally, ensure you have Python3 installed.
    `pip install Pillow`
    `pip install Adafruit-Blinka`
    `pip install adafruit-circuitpython-ssd1306`
-7) ADAFRUIT.BBIO, PIL, adafruit_ssd1306 
-8) Run the application by entering the HydrationHelper directory and run `sudo python3 calibration.py` to calibrate and then `sudo python3 main.py` to start the HydrationHelper
+3) Run the application by entering the HydrationHelper directory and run `python3 calibration.py` to calibrate and then `python3 main.py` to start the HydrationHelper
+
+> **Troubleshooting:** If you receive a "Permission Denied" error regarding hardware access (ADC or I2C), your user may not have the correct permissions. In that case, you can run the program with administrator privileges: `sudo python3 main.py` (Note: If you need to run it with sudo, you may need to install the requirements globally using `sudo pip3 install -r {dependency}`).
 
 ## Built With
 * Python, BeagleBoard
