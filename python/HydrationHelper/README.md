@@ -12,6 +12,17 @@ HydrationHelper is a tool to help people reach their daily water goals. It works
 * `docs/` - Contains the project presentation and other documentation.
 * `HydrationHelper/` - *Contains source code, and images used for the virtual pet*
 
+## Installation and Set-up 
+To run this project locally, ensure you have Python3 installed. 
+1) Clone the repository
+2) Install the required dependencies
+   `pip install Adafruit-BBIO`
+   `pip install Pillow`
+   `pip install Adafruit-Blinka`
+   `pip install adafruit-circuitpython-ssd1306`
+7) ADAFRUIT.BBIO, PIL, adafruit_ssd1306 
+8) Run the application by entering the HydrationHelper directory and run `sudo python3 calibration.py` to calibrate and then `sudo python3 main.py` to start the HydrationHelper
+
 ## Built With
 * Python, BeagleBoard
 
