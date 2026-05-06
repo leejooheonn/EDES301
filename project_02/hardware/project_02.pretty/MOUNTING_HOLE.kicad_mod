@@ -1,0 +1,64 @@
+(footprint "MOUNTING_HOLE"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "4860b600-f31b-4bca-bdbf-4ec53ebf4a4a")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right top)
+		)
+	)
+	(property "Value" "MOUNTING_HOLE"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "36944f20-5780-4b52-87e2-1e715b557e5e")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right top)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ea4ac602-474b-40d5-9e8f-c267eaf812d6")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "6d6374ca-ac0f-451d-a6e8-c7526d835476")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(duplicate_pad_numbers_are_jumpers no)
+	(pad "1" thru_hole circle
+		(at 0 0)
+		(size 4.445 4.445)
+		(drill 3.175)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(solder_mask_margin 0.0762)
+		(thermal_bridge_angle 0)
+		(uuid "6ccaae9c-c574-49d2-a108-5313c5e66395")
+	)
+	(embedded_fonts no)
+)
