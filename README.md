@@ -14,7 +14,7 @@
 
 For detailed hardware schematics, wiring diagrams, laser-cut enclosure vectors, and physical build photographs, check out the full project writeup on **Hackster.io**:
 
-👉 **[View the Hydra-Gotchi Project on Hackster.io](YOUR_HACKSTER_IO_URL_HERE)** *(Replace this with your link)*
+👉 **[View the Hydra-Gotchi Project on Hackster.io](https://www.hackster.io/jl587/hydrationhelper-0f8108) 
 
 ---
 
